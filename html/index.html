@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AS YOUR WISH - Text Editor</title>
+  <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+  <div id="loader"></div>
+  <header>
+    <nav>
+      <img src="head.jpg" alt="">
+      <h1>As Your WISH</h1>
+      <ul>
+        <li>Sign Up</li>
+        <li>Help</li>
+        <li id="showAbout">About us</li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="head">
+    <h2>
+      <marquee behavior="" direction="right">Welcome to As Your Wish !!!</marquee>
+    </h2>
+  </div>
+     <div class="popup" id="popup">
+      <img src="head.jpg">
+      <h2>As Your Wish say's</h2>
+      <p class=pop id="pop">
+      <h5>About us</h5>
+      <li>You can customize your text by using various function </li>
+      <li>Edit by yourself</li>
+      <li>Create your documents!!</li>
+      <button id="close">Close</button>
+      </p>
+    </div>
+ 
+
+  <div class="main">
+
+    <form action="#" id="myform">
+      <div class="border" id="move">
+        <h4>Font Properties</h4><br><br>
+        <label>Background&nbsp;&nbsp;&nbsp;&nbsp; </label><input type="color" class="change" id="value1"><br><br>
+        <label
+          for=>Text:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </label><input type="color" class="change" id="value2"><br><br>
+        <label>Text-Size</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+          type="number" name="" id="value3" class="change"><br><br>
+        <label>Theme Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <select name="" id="family" class="change">
+          <option value="">Chosse From below</option>
+          <option value="Arial, Helvetica, sans-serif">Arial</option>
+          <option value="'Times New Roman', Times, serif">Times New Roman</option>
+          <option value="Verdana, Geneva, Tahoma, sans-serif">Verdana</option>
+          <option value="'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Calibari</option>
+          <option value="'Courier New', Courier, monospace">Monospace</option>
+          <option value="Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Cambria</option>
+        </select><br><br>
+        <input type="button" value="Save" class="mybtn" id="first"><input type="reset" class="mybtn" id="second"
+          value="Clear Text">
+        <div id="field">
+          <textarea id="box" required>
+      </textarea>
+        </div>
+        <div class="align">
+          <label for="">Text-Align</label>
+        </div>
+        <div class="container">
+          <input type="checkbox" id="check">
+          <label for="check" class="butn" id="enable"></label>
+          <span class="theme"><b>Theme</b></span>
+          <span class="white"><b>Dark</b></span>
+          <span class="dark"><b>Light</b></span>
+
+        </div>
+    </form>
+  </div>
+  <button class="mybtn1" id="third">Clear Styles</button>
+  <button class="mybtn2" id="fourth">Clear All</button>
+  <div class="textbtn">
+    <button id="firstImg">Left</button>
+    <button id="secondImg">Center</button>
+    <button id="thirdImg">Right</button>
+  </div>
+
+  <div class="styleFont">
+    <button id="bold"><b>B</b></button>
+    <button id="italic"><i>I</i></button>
+    <button id="strike"><strike>AB</strike></button>
+  </div>
+
+  <script src="JqueryFile.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#close").click(function(){
+        $("#popup").hide();
+        $("div").css("filter","none");  
+
+      });
+    });
+
+    $(document).ready(function(){
+      $("#showAbout").click(function(){
+        $("#popup").show();
+      });
+    });
+  </script>
+
+
+  <script>
+    var loader = document.getElementById("loader");
+
+    window.addEventListener("load", function () {
+      loader.style.display = "none";
+    })
+
+
+
+
+    window.onload = function () { box.focus() }
+
+
+    let colorVal = document.getElementById("value1");
+    let colorVal2 = document.getElementById("value2");
+    let colorVal3 = document.getElementById("value3");
+    let btn = document.getElementById("third");
+
+    let textSelect = document.getElementById("box");
+
+    document.addEventListener("mouseup", (event) => {
+      textSelect = window.getSelection().toString();
+      //console.log(textSelect);  
+    })
+
+
+
+
+    colorVal.addEventListener("change", (event) => {
+      // console.log(event.target.value);
+      document.getElementById("box").style.backgroundColor = event.target.value;
+
+    })
+
+    colorVal2.addEventListener("change", (event) => {
+      // console.log(event.target.value);
+      document.getElementById("box").style.color = event.target.value;
+
+    })
+
+
+    colorVal3.addEventListener("input", (event) => {
+      // console.log(event.target.value);
+      document.getElementById("box").style.fontSize = `${event.target.value}px`;
+
+    })
+
+
+    btn.addEventListener("click", (event) => {
+      // console.log(event.target.value);
+      document.getElementById("box").style.removeProperty("background-color");
+      document.getElementById("box").style.fontSize = "13.5px";
+      document.getElementById("box").style.removeProperty("color");
+      document.getElementById("box").style.removeProperty("text-align");
+      document.getElementById("box").style.removeProperty("font-family");
+      document.getElementById("box").style.removeProperty("font-weight");
+      document.getElementById("box").style.removeProperty("text-decoration");
+      colorVal.value = "black";
+      colorVal2.value = "black";
+      colorVal3.value = " ";
+
+    })
+
+    let family = document.getElementById("family");
+
+    family.addEventListener("change", (event) => {
+      document.getElementById("box").style.fontFamily = `${event.target.value}`;
+      document.getElementById("box").style.fontSize = "20px";
+    })
+
+    let enable = document.getElementById("check");
+
+    enable.addEventListener("change", (event) => {
+
+      if (enable.checked) {
+        document.getElementById("box").style.backgroundColor = "black";
+        document.getElementById("box").style.color = "white";
+      }
+      else {
+        document.getElementById("box").style.backgroundColor = "white";
+        document.getElementById("box").style.color = "black";
+      }
+    })
+
+
+    let first = document.getElementById("firstImg");
+    let second = document.getElementById("secondImg");
+    let third = document.getElementById("thirdImg");
+
+    first.addEventListener("click", (event) => {
+      //console.log("Clicked");
+      document.getElementById("box").style.textAlign = "left";
+    })
+
+    second.addEventListener("click", (event) => {
+      //console.log("Clicked");
+      document.getElementById("box").style.textAlign = "center";
+    })
+
+    third.addEventListener("click", (event) => {
+      //console.log("Clicked");
+      document.getElementById("box").style.textAlign = "right";
+    })
+
+
+    let boldTag = document.getElementById("bold");
+
+    boldTag.addEventListener("click", (event) => {
+      document.getElementById("box").style.fontWeight = "bolder";
+      document.getElementById("box").style.fontSize = "20px";
+    })
+
+    let italicTag = document.getElementById("italic");
+
+    italicTag.addEventListener("click", (event) => {
+      document.getElementById("box").style.fontStyle = "italic";
+      document.getElementById("box").style.fontSize = "20px";
+    })
+
+    let strikeTag = document.getElementById("strike");
+
+    strikeTag.addEventListener("click", (event) => {
+      document.getElementById("box").style.textDecoration = "line-through";
+      document.getElementById("box").style.fontSize = "20px";
+    })
+
+
+    let clearAll = document.getElementById("fourth");
+
+    clearAll.addEventListener("click", (event) => {
+      document.getElementById("box").value = " ";
+      document.getElementById("box").style.removeProperty("background-color");
+      document.getElementById("box").style.fontSize = "13.5px";
+      document.getElementById("box").style.removeProperty("color");
+      document.getElementById("box").style.removeProperty("text-align");
+      document.getElementById("box").style.removeProperty("font-family");
+      document.getElementById("box").style.removeProperty("font-weight");
+      document.getElementById("box").style.removeProperty("text-decoration");
+      colorVal.value = "black";
+      colorVal2.value = "black";
+      colorVal3.value = " ";
+    })
+
+
+
+
+
+    // colorVal.innerText=this.value;
+    // console.log(colorVal);
+  </script>
+</body>
+
+
+
+
+
+</html>
